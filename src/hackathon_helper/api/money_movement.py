@@ -26,7 +26,7 @@ class MoneyMovement:
             payload (dict): The contents of the request.
 
         Returns:
-            Response: The reponse from the api including content and status code.
+            Response: The response from the api including content and status code.
         """
         activity_response = requests.post(url=self.uat_url + 'activity/deposit',
                                           auth=self.basic_auth,
@@ -42,7 +42,7 @@ class MoneyMovement:
             payload (dict): The contents of the request.
 
         Returns:
-            Response: The reponse from the api including content and status code.
+            Response: The response from the api including content and status code.
         """
         activity_response = requests.post(url=self.uat_url + 'activity/deposit',
                                           auth=self.basic_auth,
