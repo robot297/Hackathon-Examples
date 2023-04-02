@@ -31,5 +31,22 @@ class MoneyMovement:
         activity_response = requests.post(url=self.uat_url + 'activity/deposit',
                                           auth=self.basic_auth,
                                           headers=self.headers,
-                                          json=payload)
+                                          json=payload,
+                                          timeout=60)
+        return activity_response
+
+    def withdraw_money(self, payload):
+        """This will withdraw money from an account.
+
+        Args:
+            payload (dict): The contents of the request.
+
+        Returns:
+            Response: The reponse from the api including content and status code.
+        """
+        activity_response = requests.post(url=self.uat_url + 'activity/deposit',
+                                          auth=self.basic_auth,
+                                          headers=self.headers,
+                                          json=payload,
+                                          timeout=60)
         return activity_response
