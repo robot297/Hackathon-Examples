@@ -16,3 +16,8 @@ Once you have your project open, make sure you install the following libraries u
 * python-dotenv
 
 You can also install both of this running the command `pip install -r requirements.txt` (assuming you're using this project).
+
+## Developer Notes
+
+To see if your code is using industry standard naming conventions, you can run
+`pylint *.py */*.py` to run the linter and have the code rated.
