@@ -1,23 +1,11 @@
 """Libraries for the money movement API.
 """
-from requests.auth import HTTPBasicAuth
 import requests
+from .api_builder import APIBuilder
 
-class MoneyMovement:
+class MoneyMovement(APIBuilder):
     """Functions for the money movement API.
     """
-
-    def __init__(self, API_KEY, API_SECRET):
-        """This creates the object for you to interacting with money movement API.
-
-        Args:
-            API_KEY (string): The API key needed for authentication.
-            API_SECRET (string): The API secret needed for authentication.
-        """
-        self.uat_url = 'https://alpha-api.usbank.com/innovation/bank-node/money-movement/v1/'
-        self.headers = { 'Content-Type': 'application/json' }
-        self.basic_auth = HTTPBasicAuth(API_KEY, API_SECRET)
-
 
     def deposit_money(self, payload):
         """This will deposit money to an account.
