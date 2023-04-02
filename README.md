@@ -2,6 +2,8 @@
 
 Here some basic python examples that you can leverage on how to interact with U.S. Bank's apis.
 
+To see the full list of APIs available, you can read the documentation [here](https://hacktotrack-innovation.usbank.com/).
+
 ## Set Up
 
 If you're using **PyCharm**, make sure that you have a virtual environment so that we can install
@@ -15,4 +17,9 @@ Once you have your project open, make sure you install the following libraries u
 * requests
 * python-dotenv
 
-You can also install both of this running the command `pip install -r requirements.txt` (assuming you're using this project).
+You can also install both of these running the command `pip install -r requirements.txt` (assuming you're using this project).
+
+## Developer Notes
+
+To see if your code is using industry standard naming conventions, you can run
+`pylint *.py */*.py` to run the linter and have the code rated.

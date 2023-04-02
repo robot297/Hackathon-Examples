@@ -1,8 +1,6 @@
 import os
-import requests
-from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
-from pprint import pprint
+from api.money_movement import MoneyMovement
 
 
 if __name__ == "__main__":
@@ -11,13 +9,6 @@ if __name__ == "__main__":
 
     API_KEY = os.getenv('api_key')
     API_SECRET = os.getenv('api_secret')
-    basic = HTTPBasicAuth(API_KEY, API_SECRET)
-
-    uat_url = 'https://alpha-api.usbank.com/innovation/bank-node/money-movement/v1/'
-
-    headers = {
-        'Content-Type': 'application/json',
-    }
 
     payload = {
         "accountID": "00000",
@@ -26,5 +17,8 @@ if __name__ == "__main__":
         "party": "Test"
     }
     
-    activity_response = requests.post(url=uat_url + 'activity/deposit', auth=basic, headers=headers, json=payload).json()
-    pprint(activity_response)
+    money_movement = MoneyMovement(API_KEY, API_SECRET)
+
+    response = money_movement.deposit_money(payload)
+
+    print(response.json())
