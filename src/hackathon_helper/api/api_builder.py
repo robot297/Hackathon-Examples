@@ -13,6 +13,8 @@ class APIBuilder:
             API_KEY (string): The API key needed for authentication.
             API_SECRET (string): The API secret needed for authentication.
         """
-        self.uat_url = 'https://alpha-api.usbank.com/innovation/bank-node/money-movement/v1/'
-        self.headers = { 'Content-Type': 'application/json' }
+        self.headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
         self.basic_auth = HTTPBasicAuth(api_key, api_secret)
