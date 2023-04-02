@@ -19,6 +19,6 @@ if __name__ == "__main__":
     
     money_movement = MoneyMovement(API_KEY, API_SECRET)
 
-    response = money_movement.post_money(payload)
+    response = money_movement.deposit_money(payload)
 
     print(response.json())

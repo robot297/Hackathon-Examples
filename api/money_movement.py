@@ -19,8 +19,8 @@ class MoneyMovement:
         self.basic_auth = HTTPBasicAuth(API_KEY, API_SECRET)
 
 
-    def post_money(self, payload):
-        """This will post money to an account.
+    def deposit_money(self, payload):
+        """This will deposit money to an account.
 
         Args:
             payload (dict): The contents of the request.
