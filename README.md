@@ -23,3 +23,10 @@ You can also install both of these running the command `pip install -r requireme
 
 To see if your code is using industry standard naming conventions, you can run
 `pylint *.py */*.py` to run the linter and have the code rated.
+
+## Build Library Locally
+
+To build this library locally you can run the command `python -m build` to generate a **.whl** file in the **dist/** folder.
+
+If you want to use this library for your local python project, you can install it via pip by running
+`pip install --index-url https://test.pypi.org/simple/ --no-deps mctc-hackathon-robot297`.
