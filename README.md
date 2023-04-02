@@ -14,3 +14,5 @@ Once you have your project open, make sure you install the following libraries u
 
 * requests
 * python-dotenv
+
+You can also install both of this running the command `pip install -r requirements.txt` (assuming you're using this project).
