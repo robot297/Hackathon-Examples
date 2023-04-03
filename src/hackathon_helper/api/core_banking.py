@@ -5,7 +5,6 @@ from .api_builder import APIBuilder
 
 class CoreBanking(APIBuilder):
     """Helpers for interacting with the core banking API.
-        Docs: 
     """
     def __init__(self, api_key, api_secret):
         """This creates the object for you to interact with the core banking API.
@@ -34,8 +33,8 @@ class CoreBanking(APIBuilder):
             )
         return activity_response
     
-    def find_accounts(self, customer_id): 
-        """This method returns an array of accounts associated with this Customer ID
+    def list_accounts(self, customer_id): 
+        """This method returns an array of accounts associated with this Customer ID.
 
         Args:
             customer_id (string): a unique customer id
@@ -69,7 +68,7 @@ class CoreBanking(APIBuilder):
         return activity_response
 
     def list_cards(self, account_id):
-        """This method returns a JSON array of card objects for a specific account
+        """This method returns a JSON array of card objects for a specific account.
 
         Args:
             account_id (string): a unique account id
@@ -86,22 +85,91 @@ class CoreBanking(APIBuilder):
         return activity_response
     
     def list_transactions(self, account_id, transaction_type, query_dates=None):
-        """This method returns a JSON array of transactions for a specific account based on the input values. 
-        It can be limited to certain transaction types and date ranges
+        """This method returns a JSON array of transactions for a specific account based on the input values.
+        It can be limited to certain transaction types and date ranges.
 
         Args:
             account_id (string): a unique account id.
-            transaction_type (string): type of transactions to retrieve. E.g., "FULL" "PUR" "MEMO" "PMT" "SHORT".
+            transaction_type (string): type of transactions to retrieve. 
+                E.g., "FULL" "PUR" "MEMO" "PMT" "SHORT".
             query_dates (dict): (Optional) start and end dates for searching by transaction date range.
+               E.g., { start: "YYYY-MM-DD", end: "YYYY-MM-DD" }
 
         Returns:
-            _type_: _description_
+            Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
                 url=self.uat_url + f'account/{account_id}/trans/{transaction_type}',
                 auth=self.basic_auth,
                 headers=self.headers,
                 params=query_dates,
+                timeout=60
+            )
+        return activity_response
+
+    def create_credit_card(self, customer_id, payload):
+        """This method generates a new credit card account for a specific customer account.
+
+        Args:
+            customer_id (string): a unique customer id
+            payload (dict): The contents of the request.
+                E.g, 
+                {
+                "nickname": "",
+                "accountType": "string",
+                "creditLimit": 2000
+                }
+
+        Returns:
+            Response: The response from the api including content and status code.
+        """
+        activity_response = requests.post(
+                url=self.uat_url + f'account/{customer_id}/credit',
+                auth=self.basic_auth,
+                headers=self.headers,
+                json=payload,
+                timeout=60
+            )
+        return activity_response
+    
+    def create_deposit_account(self, customer_id, payload):
+        """This method generates a new deposit account for a specific customer account.
+
+        Args:
+            customer_id (string): a unique customer id
+            payload (dict): The contents of the request.
+                E.g, 
+                {
+                "nickname": "",
+                "accountType": "string",
+                "creditLimit": 2000
+                }
+
+        Returns:
+            Response: The response from the api including content and status code.
+        """
+        activity_response = requests.post(
+                url=self.uat_url + f'account/{customer_id}/dda',
+                auth=self.basic_auth,
+                headers=self.headers,
+                json=payload,
+                timeout=60
+            )
+        return activity_response
+
+    def find_transaction(self, transaction_id): 
+        """This method returns a JSON object of a single transaction.
+
+        Args:
+            transaction_id (string): a unique transaction id
+
+        Returns: 
+             Response: The response from the api including content and status code.
+        """
+        activity_response = requests.get(
+                url=self.uat_url + f'transaction/{transaction_id}',
+                auth=self.basic_auth,
+                headers=self.headers,
                 timeout=60
             )
         return activity_response
