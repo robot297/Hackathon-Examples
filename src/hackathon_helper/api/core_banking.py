@@ -32,5 +32,19 @@ class CoreBanking(APIBuilder):
                 },
                 timeout=60
             )
-        
         return activity_response
+    
+    def find_accounts(self, customer_id): 
+        """This method returns an array of accounts associated with this Customer ID
+
+        Args:
+            customer_id (string): a unique customer id
+        """
+        activity_response = requests.get(
+                url=self.uat_url + f'customer/{customer_id}/accounts', 
+                auth=self.basic_auth,
+                headers=self.headers,
+                timeout=60
+            )
+        return activity_response
+    
