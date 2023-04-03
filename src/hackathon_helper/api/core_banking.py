@@ -22,14 +22,14 @@ class CoreBanking(APIBuilder):
 
         Args:
             customer_id (string): a unique customer id. 
+
+        Returns: 
+             Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
                 url=self.uat_url + f'customer/{customer_id}', 
                 auth=self.basic_auth,
                 headers=self.headers,
-                json={
-                    "customerID":customer_id
-                },
                 timeout=60
             )
         return activity_response
@@ -39,6 +39,9 @@ class CoreBanking(APIBuilder):
 
         Args:
             customer_id (string): a unique customer id
+                    
+        Returns: 
+             Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
                 url=self.uat_url + f'customer/{customer_id}/accounts', 
@@ -48,3 +51,19 @@ class CoreBanking(APIBuilder):
             )
         return activity_response
     
+    def account_details(self, account_id):
+        """This method returns a single account record. (Provides the complete detailed listing for a single account.)
+
+        Args:
+            account_id (string): a unique account id
+                    
+        Returns: 
+             Response: The response from the api including content and status code.
+        """
+        activity_response = requests.get(
+                url=self.uat_url + f'account/{account_id}', 
+                auth=self.basic_auth,
+                headers=self.headers,
+                timeout=60
+            )
+        return activity_response
