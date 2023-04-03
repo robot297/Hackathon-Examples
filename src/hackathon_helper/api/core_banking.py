@@ -8,7 +8,7 @@ class CoreBanking(APIBuilder):
         Docs: 
     """
     def __init__(self, api_key, api_secret):
-        """This creates the object for you to interact with the core banking API. 
+        """This creates the object for you to interact with the core banking API.
 
         Args:
             api_key (string): The API key needed for authentication.
@@ -18,7 +18,7 @@ class CoreBanking(APIBuilder):
         super().__init__(api_key, api_secret)
 
     def find_customer(self, customer_id):
-        """This method returns a single customer record associated with this Customer ID
+        """This method returns a single customer record associated with this Customer ID.
 
         Args:
             customer_id (string): a unique customer id. 
@@ -27,7 +27,7 @@ class CoreBanking(APIBuilder):
              Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
-                url=self.uat_url + f'customer/{customer_id}', 
+                url=self.uat_url + f'customer/{customer_id}',
                 auth=self.basic_auth,
                 headers=self.headers,
                 timeout=60
@@ -44,7 +44,7 @@ class CoreBanking(APIBuilder):
              Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
-                url=self.uat_url + f'customer/{customer_id}/accounts', 
+                url=self.uat_url + f'customer/{customer_id}/accounts',
                 auth=self.basic_auth,
                 headers=self.headers,
                 timeout=60
@@ -61,7 +61,7 @@ class CoreBanking(APIBuilder):
              Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
-                url=self.uat_url + f'account/{account_id}', 
+                url=self.uat_url + f'account/{account_id}',
                 auth=self.basic_auth,
                 headers=self.headers,
                 timeout=60
@@ -78,14 +78,14 @@ class CoreBanking(APIBuilder):
              Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
-                url=self.uat_url + f'account/{account_id}/cards', 
+                url=self.uat_url + f'account/{account_id}/cards',
                 auth=self.basic_auth,
                 headers=self.headers,
                 timeout=60
             )
         return activity_response
     
-    def list_transactions(self, account_id, transaction_type, query_dates={}):
+    def list_transactions(self, account_id, transaction_type, query_dates=None):
         """This method returns a JSON array of transactions for a specific account based on the input values. 
         It can be limited to certain transaction types and date ranges
 
@@ -98,7 +98,7 @@ class CoreBanking(APIBuilder):
             _type_: _description_
         """
         activity_response = requests.get(
-                url=self.uat_url + f'account/{account_id}/trans/{transaction_type}', 
+                url=self.uat_url + f'account/{account_id}/trans/{transaction_type}',
                 auth=self.basic_auth,
                 headers=self.headers,
                 params=query_dates,
