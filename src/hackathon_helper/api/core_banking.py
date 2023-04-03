@@ -142,7 +142,7 @@ class CoreBanking(APIBuilder):
                 {
                 "nickname": "",
                 "accountType": "string",
-                "creditLimit": 2000
+                "openBalance": 100
                 }
 
         Returns:
