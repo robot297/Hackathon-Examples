@@ -32,8 +32,8 @@ class CoreBanking(APIBuilder):
                 timeout=60
             )
         return activity_response
-    
-    def list_accounts(self, customer_id): 
+
+    def list_accounts(self, customer_id):
         """This method returns an array of accounts associated with this Customer ID.
 
         Args:
@@ -49,9 +49,10 @@ class CoreBanking(APIBuilder):
                 timeout=60
             )
         return activity_response
-    
+
     def account_details(self, account_id):
-        """This method returns a single account record. (Provides the complete detailed listing for a single account.)
+        """This method returns a single account record.
+        (Provides the complete detailed listing for a single account.)
 
         Args:
             account_id (string): a unique account id
@@ -83,17 +84,19 @@ class CoreBanking(APIBuilder):
                 timeout=60
             )
         return activity_response
-    
+
     def list_transactions(self, account_id, transaction_type, query_dates=None):
-        """This method returns a JSON array of transactions for a specific account based on the input values.
-        It can be limited to certain transaction types and date ranges.
+        """This method returns a JSON array of transactions for a specific
+        account based on the input values. It can be limited to certain transaction
+        types and date ranges.
 
         Args:
             account_id (string): a unique account id.
             transaction_type (string): type of transactions to retrieve. 
                 E.g., "FULL" "PUR" "MEMO" "PMT" "SHORT".
-            query_dates (dict): (Optional) start and end dates for searching by transaction date range.
-               E.g., { start: "YYYY-MM-DD", end: "YYYY-MM-DD" }
+            query_dates (dict): (Optional) start and end dates for searching by
+                transaction date range.
+                E.g., { start: "YYYY-MM-DD", end: "YYYY-MM-DD" }
 
         Returns:
             Response: The response from the api including content and status code.
@@ -131,7 +134,7 @@ class CoreBanking(APIBuilder):
                 timeout=60
             )
         return activity_response
-    
+
     def create_deposit_account(self, customer_id, payload):
         """This method generates a new deposit account for a specific customer account.
 
@@ -157,7 +160,7 @@ class CoreBanking(APIBuilder):
             )
         return activity_response
 
-    def find_transaction(self, transaction_id): 
+    def find_transaction(self, transaction_id):
         """This method returns a JSON object of a single transaction.
 
         Args:
