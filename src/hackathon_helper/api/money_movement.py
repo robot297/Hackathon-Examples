@@ -8,7 +8,7 @@ class MoneyMovement(APIBuilder):
     """
 
     def __init__(self, api_key, api_secret):
-        """This creates the object for you to interacting with money movement API.
+        """This creates the object for you to interact with money movement API.
 
         Args:
             api_key (string): The API key needed for authentication.
