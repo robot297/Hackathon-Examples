@@ -23,7 +23,7 @@ class CoreBanking(APIBuilder):
             customer_id (string): a unique customer id. 
 
         Returns: 
-             Response: The response from the api including content and status code.
+            Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
                 url=self.uat_url + f'customer/{customer_id}',
@@ -40,7 +40,7 @@ class CoreBanking(APIBuilder):
             customer_id (string): a unique customer id
                     
         Returns: 
-             Response: The response from the api including content and status code.
+            Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
                 url=self.uat_url + f'customer/{customer_id}/accounts',
@@ -58,7 +58,7 @@ class CoreBanking(APIBuilder):
             account_id (string): a unique account id
                     
         Returns: 
-             Response: The response from the api including content and status code.
+            Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
                 url=self.uat_url + f'account/{account_id}',
@@ -75,7 +75,7 @@ class CoreBanking(APIBuilder):
             account_id (string): a unique account id
                     
         Returns: 
-             Response: The response from the api including content and status code.
+            Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
                 url=self.uat_url + f'account/{account_id}/cards',
@@ -167,7 +167,7 @@ class CoreBanking(APIBuilder):
             transaction_id (string): a unique transaction id
 
         Returns: 
-             Response: The response from the api including content and status code.
+            Response: The response from the api including content and status code.
         """
         activity_response = requests.get(
                 url=self.uat_url + f'transaction/{transaction_id}',
