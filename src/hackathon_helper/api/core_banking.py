@@ -95,15 +95,17 @@ class CoreBanking(APIBuilder):
             transaction_type (string): type of transactions to retrieve. 
                 E.g., "FULL" "PUR" "MEMO" "PMT" "SHORT".
             start (string, optional): start date for searching by
-                transaction date range.
+                transaction date range. Must use format: "YYYY-MM-DD"
             end (string, optional): end date for searching by
-                transaction date range.
+                transaction date range. Must use format: "YYYY-MM-DD"
                 
         Returns:
             Response: The response from the api including content and status code.
         """
-        if kwargs['start'] and kwargs['end']:
-            query_dates = {"start": kwargs['start'], "end": kwargs['end']}
+        optional_params = kwargs.keys()
+
+        if 'start' in optional_params and 'end' in optional_params:
+            query_dates = {'start': kwargs['start'], 'end': kwargs['end']}
         else:
             query_dates = None
 
@@ -116,22 +118,26 @@ class CoreBanking(APIBuilder):
             )
         return activity_response
 
-    def create_credit_card(self, customer_id, payload):
+    def create_credit_card(self, customer_id, nickname=None, account_type=None, credit_limit=None):
         """This method generates a new credit card account for a specific customer account.
 
         Args:
             customer_id (string): a unique customer id
-            payload (dict): The contents of the request.
-                E.g, 
-                {
-                "nickname": "",
-                "accountType": "string",
-                "creditLimit": 2000
-                }
+            nickname (optional, string): Account nickname
+            account_type (optional, string): type of mock account; enum[CCD, BCD]
+            credit_limit (optional, float): Credit limit for new card account
 
         Returns:
             Response: The response from the api including content and status code.
         """
+
+
+        payload = {
+                "nickname": str(nickname),
+                "accountType": str(account_type),
+                "creditLimit": float(credit_limit)
+        }
+
         activity_response = requests.post(
                 url=self.uat_url + f'account/{customer_id}/credit',
                 auth=self.basic_auth,
@@ -141,22 +147,24 @@ class CoreBanking(APIBuilder):
             )
         return activity_response
 
-    def create_deposit_account(self, customer_id, payload):
+    def create_deposit_account(self, customer_id,  nickname=None,
+                               account_type=None, open_balance=None):
         """This method generates a new deposit account for a specific customer account.
 
         Args:
             customer_id (string): a unique customer id
-            payload (dict): The contents of the request.
-                E.g, 
-                {
-                "nickname": "",
-                "accountType": "string",
-                "openBalance": 100
-                }
+            nickname (optional, string): Account nickname
+            account_type (optional, string): type of mock account; enum[CCD, BCD]
+            open_balance (optional, float): Credit limit for new card account
 
         Returns:
             Response: The response from the api including content and status code.
         """
+        payload = {
+                "nickname": str(nickname),
+                "accountType": str(account_type),
+                "openBalance": float(open_balance)
+        }
         activity_response = requests.post(
                 url=self.uat_url + f'account/{customer_id}/dda',
                 auth=self.basic_auth,
