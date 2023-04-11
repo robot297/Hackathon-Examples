@@ -18,23 +18,23 @@ class MoneyMovement(APIBuilder):
         super().__init__(api_key, api_secret)
 
 
-    def deposit_money(self, accountID, amount, party, checkNumber=None):
+    def deposit_money(self, account_id, amount, party, check_number=None):
         """This will deposit money to an account.
 
         Args:
-            accountID (str): The contents of the request.
+            account_id (str): The contents of the request.
             amount (decimal): The amount to deposit in dollars.
             party (str): The payer name.
-            checkNumber (str, optional): Defaults to none.
+            check_number (str, optional): Defaults to none.
                 The check number if applicable.
 
         Returns:
             Response: The response from the api including content and status code.
         """
         payload = {
-            "accountID": accountID,
+            "accountID": account_id,
             "amount": float(amount),
-            "checkNumber": checkNumber,
+            "checkNumber": check_number,
             "party": party
         }
         activity_response = requests.post(url=self.uat_url + 'activity/deposit',
