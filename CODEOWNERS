@@ -1,1 +1,2 @@
-*.py @robot297
+src/hackathon_helper/api/money_movement.py @robot297
+src/hackathon_helper/api/core_banking.py @lshock
