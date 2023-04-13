@@ -23,7 +23,7 @@ class MoneyMovement(APIBuilder):
 
         Args:
             account_id (str): The contents of the request.
-            amount (decimal): The amount to deposit in dollars.
+            amount (float): The amount to deposit in dollars.
             party (str): The payer name.
             check_number (str, optional): Defaults to none.
                 The check number if applicable.
@@ -49,7 +49,7 @@ class MoneyMovement(APIBuilder):
 
         Args:
             account_id (str): The contents of the request.
-            amount (decimal): The amount to deposit in dollars.
+            amount (float): The amount to deposit in dollars.
             party (str): The payer name.
             check_number (str, optional): Defaults to none.
                 The check number if applicable.
@@ -81,7 +81,7 @@ class MoneyMovement(APIBuilder):
             expire_month (str): expiration month (MM).
             expire_year (str): expiration year (YYYY).
             zipcode (str): Postal code associated with this card.
-            amount (decimal): Purchase amount in dollars.
+            amount (float): Purchase amount in dollars.
             merchant_code (str): The corresponding merchant code.
             cvv_code (str): Security code.
             in_person (bool, optional): Default true. 
@@ -142,7 +142,7 @@ class MoneyMovement(APIBuilder):
 
         Args:
             account_id (str): The account id.
-            amount (decimal): The amount to deposit in dollars.
+            amount (float): The amount to deposit in dollars.
             check_number (str, optional): Defaults to none.
                 The check number if applicable.
         
@@ -171,7 +171,7 @@ class MoneyMovement(APIBuilder):
         Args:
             encrypted_card_data (str): the encrypted card data.
             wallet_id (str): the digital wallet identifier.
-            ammount (decimal): Purchase amount.
+            amount (float): Purchase amount.
             merchant (str): The merchant name.
             merchant_code (str): The corresponding merchant code
         
@@ -183,7 +183,7 @@ class MoneyMovement(APIBuilder):
             "walletID": wallet_id,
             "merchant": merchant,
             "mcc": merchant_code,
-            "amount": amount
+            "amount": float(amount)
         }
 
         activity_response = requests.post(url=self.uat_url + 'activity/digital-wallet',
@@ -203,7 +203,7 @@ class MoneyMovement(APIBuilder):
             account_id (str): Unique identifier for the account sending funds.
             routing_number (str): Routing number for external account.
             external_account_id (str): Unique identifier for the external account receiving funds.
-            amount (decimal): Transfer amount.
+            amount (float): Transfer amount.
         
         Returns:
             Response: The response from the api including content and status code.
@@ -230,7 +230,7 @@ class MoneyMovement(APIBuilder):
             customer_id (str): Customer identifier for the owner of the account.
             to_account_id (str): Unique identifier for the account receiving funds.
             from_account_id (str): Unique identifier for the account sending funds.
-            amount (decimal): Transfer amount.
+            amount (float): Transfer amount.
         
         Returns:
             Response: The response from the api including content and status code.
@@ -239,7 +239,7 @@ class MoneyMovement(APIBuilder):
             "customerID": customer_id,
             "toAccountID": to_account_id,
             "fromAccountID": from_account_id,
-            "amount": amount
+            "amount": float(amount)
         }
 
         activity_response = requests.post(url=self.uat_url + 'activity/funds-transfer',
